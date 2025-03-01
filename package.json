@@ -18,7 +18,10 @@
     "vite": "^6.2.0"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.0.9",
     "@tensorflow/tfjs": "^4.22.0",
+    "@types/w3c-image-capture": "^1.0.10",
+    "tailwindcss": "^4.0.9",
     "tesseract.js": "^6.0.0"
   }
 }
