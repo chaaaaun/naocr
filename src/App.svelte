@@ -8,7 +8,7 @@
     canvas: HTMLCanvasElement;
   }) {
     // try {
-      const { imageData, canvas } = event;
+    //   const { imageData, canvas } = event;
     //   isProcessing = true;
     //   detectedText = 'Processing...';
       
@@ -64,8 +64,5 @@
 </script>
 
 <main>
-      <Camera capture={handleCapture} disabled={isProcessing} />
+       <Camera />
 </main>
-
-<style>
- </style>
