@@ -1,5 +1,5 @@
 @import "tailwindcss";
 
 .dimmed-area {
-    @apply absolute pointer-events-none bg-black/60;
+  @apply absolute pointer-events-none bg-black/60;
 }

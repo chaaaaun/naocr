@@ -1,7 +1,7 @@
 {
   "name": "naocr",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,6 +12,8 @@
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@tsconfig/svelte": "^5.0.4",
+    "prettier": "^3.5.3",
+    "prettier-plugin-svelte": "^3.3.3",
     "svelte": "^5.20.2",
     "svelte-check": "^4.1.4",
     "typescript": "~5.7.2",
@@ -19,8 +21,8 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.9",
-    "@tensorflow/tfjs": "^4.22.0",
     "@types/w3c-image-capture": "^1.0.10",
+    "jimp": "^1.6.0",
     "tailwindcss": "^4.0.9",
     "tesseract.js": "^6.0.0"
   }

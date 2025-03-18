@@ -1,18 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-
-  interface Props {
-    orientation?: "horizontal" | "vertical";
-    updateCoordinates: (coords: {
-      x: number;
-      y: number;
-      width: number;
-      height: number;
-    }) => void;
-  }
-
-  // Event dispatcher for emitting coordinates
-  const { orientation = "horizontal", updateCoordinates }: Props = $props();
+  import { Orientation, sharedState } from "../../state.svelte";
 
   // Constants for the bounding box dimensions
   const HORZ_WIDTH = 250;
@@ -21,31 +9,35 @@
   const VERT_WIDTH = 100;
   const VERT_HEIGHT = 350;
 
-  // State variables
+  // Local state variables
   let viewportWidth = $state(0);
   let viewportHeight = $state(0);
   let boxX = $derived(() => Math.floor((viewportWidth - boxWidth()) / 2));
   let boxY = $derived(() => Math.floor((viewportHeight - boxHeight()) / 2));
   let boxWidth = $derived(() =>
-    orientation === "vertical" ? VERT_WIDTH : HORZ_WIDTH
+    sharedState.orientation === Orientation.Vertical ? VERT_WIDTH : HORZ_WIDTH
   );
   let boxHeight = $derived(() =>
-    orientation === "vertical" ? VERT_HEIGHT : HORZ_HEIGHT
+    sharedState.orientation === Orientation.Vertical ? VERT_HEIGHT : HORZ_HEIGHT
   );
   let resizeObserver: ResizeObserver;
 
-  // Update position when viewport or box dimensions change
+  // Update the coordinates in parent whenever they change
   $effect(() => {
-    // Emit the coordinates whenever they change
     if (boxX() !== undefined && boxY() !== undefined) {
-      updateCoordinates({
+      sharedState.boxCoordinates = {
         x: boxX(),
         y: boxY(),
         width: boxWidth(),
         height: boxHeight(),
-      });
+      };
     }
   });
+
+  function updateViewportDimensions() {
+    viewportWidth = window.innerWidth;
+    viewportHeight = window.innerHeight;
+  }
 
   onMount(() => {
     // Initialize with current viewport dimensions
@@ -62,14 +54,9 @@
       }
     };
   });
-
-  function updateViewportDimensions() {
-    viewportWidth = window.innerWidth;
-    viewportHeight = window.innerHeight;
-  }
 </script>
 
-<div class="fixed top-0 left-0 w-full h-full pointer-events-none z-50">
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none z-1">
   <!-- Top dimmed area -->
   <div
     class="dimmed-area"
