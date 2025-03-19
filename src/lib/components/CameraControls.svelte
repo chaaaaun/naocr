@@ -74,6 +74,15 @@
   />
 </div>
 
+<div class="fixed top-0 left-0 h-full flex flex-col justify-center z-2 mr-4">
+  <input
+    type="range"
+    bind:this={sharedState.exposure.sliderElement}
+    disabled={!sharedState.exposure.isSupported}
+    class={!sharedState.exposure.isSupported ? "hidden" : ""}
+  />
+</div>
+
 <style>
   button {
     border-radius: 50%;
@@ -96,7 +105,6 @@
   input[type="range"] {
     writing-mode: vertical-lr;
     direction: rtl;
-    appearance: slider-vertical;
     width: 16px;
     height: 40%;
     vertical-align: bottom;

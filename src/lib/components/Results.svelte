@@ -8,6 +8,7 @@
 
   $effect(() => {
     if (!sharedState.imageDataUrl) return;
+    sharedState.imageProcessing = false;
     detectedText = [];
     processImage(
       sharedState.imageDataUrl,

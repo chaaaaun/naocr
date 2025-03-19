@@ -1,5 +1,9 @@
 <script>
   import { sharedState } from "../../state.svelte";
+
+  $effect(() => {
+    console.log("sharedState.imageProcessing", sharedState.imageProcessing);
+  });
 </script>
 
 {#if sharedState.imageProcessing}

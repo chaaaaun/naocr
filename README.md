@@ -17,11 +17,12 @@ npm run build
 
 ## Testing
 
-This project has no defined testing strategy. It is a small personal project after all. Nonetheless, it should work on modern Firefox and Chromium-based browsers. Notably, zooming is only supported on Chromium-based browsers.
+This project has no defined testing strategy. It is a small personal project after all. Nonetheless, it should work on modern Firefox and Chromium-based browsers. Notably, advanced camera controls like zoom and exposure are only supported on Chromium-based browsers.
 
 ## Caveats
 
 - If using file uploads, make sure to set the correct bounding box orientation in the camera overlay before uploading, as the OCR engine uses a differently primed worker for horizontal and vertical text, and it decides which worker to use using the bounding box orientation set manually by the user for reliability.
+- Image capture is noticably slow, which is because I've employed the age-old method of drawing a video element onto a canvas to grab the camera shot. Why do this when the ImageCapture API exists? a) the `grabFrame()` in the API is actually slower for some reason. b) `takePhoto()` actually takes a shot with the camera's full frame, which is often times vastly different in both resolution and aspect ratio to the portion displayed in-browser. As you can imagine trying to reconcile bounding boxes in this scenario would be a nightmare. From my testing, the primitive way I'm currently doing it is about 2x slower than `takePhoto()`, but I haven't found a better alternative yet...
 
 ## Known Issues and Expansions
 
