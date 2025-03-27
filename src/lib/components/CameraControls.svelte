@@ -66,13 +66,15 @@
 </div>
 
 <div
-  class="fixed top-0 right-0 h-full flex flex-col justify-center items-center gap-y-2 z-2 mr-4"
+  class={[
+    "fixed top-0 right-0 h-full flex flex-col justify-center items-center gap-y-2 z-2 mr-4",
+    !sharedState.zoom.isSupported && "hidden",
+  ]}
 >
   <input
     type="range"
     bind:this={sharedState.zoom.sliderElement}
     disabled={!sharedState.zoom.isSupported}
-    class={!sharedState.zoom.isSupported ? "hidden" : ""}
   />
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -87,13 +89,15 @@
 </div>
 
 <div
-  class="fixed top-0 left-0 h-full flex flex-col justify-center items-center gap-y-2 z-2 ml-4"
+  class={[
+    "fixed top-0 left-0 h-full flex flex-col justify-center items-center gap-y-2 z-2 ml-4",
+    !sharedState.exposure.isSupported && "hidden",
+  ]}
 >
   <input
     type="range"
     bind:this={sharedState.exposure.sliderElement}
     disabled={!sharedState.exposure.isSupported}
-    class={!sharedState.exposure.isSupported ? "hidden" : ""}
   />
   <svg
     xmlns="http://www.w3.org/2000/svg"

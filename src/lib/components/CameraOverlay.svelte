@@ -4,7 +4,7 @@
 
   // Constants for the bounding box dimensions
   const HORZ_WIDTH = 250;
-  const HORZ_HEIGHT = 150;
+  const HORZ_HEIGHT = 50;
 
   const VERT_WIDTH = 100;
   const VERT_HEIGHT = 350;
@@ -87,7 +87,7 @@
 
   <!-- Bounding box -->
   <div
-    class="absolute bounding-box pointer-events-none border-2 border-red-500"
+    class="absolute pointer-events-none border-2 border-red-500"
     style="top: {boxY()}px; left: {boxX()}px; width: {boxWidth()}px; height: {boxHeight()}px;"
   ></div>
 </div>

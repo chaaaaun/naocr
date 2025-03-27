@@ -1,5 +1,6 @@
 import Tesseract, { createWorker, PSM } from "tesseract.js";
 import { Orientation } from "../../state.svelte";
+import Mecab from "mecab-wasm";
 
 let horzWorker: Tesseract.Worker | null = null;
 let vertWorker: Tesseract.Worker | null = null;
@@ -74,11 +75,5 @@ export async function recognizeText(
 }
 
 function segmentWords(line: string) {
-    if (!segmenter) {
-        segmenter = new Intl.Segmenter("ja-JP", { granularity: "word" });
-    }
-
-    return Array.from(segmenter.segment(line))
-        .filter((item) => item.isWordLike)
-        .map((item) => item.segment);
+    return Mecab.query(line).map(r => r.word);
 }

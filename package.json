@@ -21,8 +21,9 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.9",
+    "@techstark/opencv-js": "^4.10.0-release.1",
     "@types/w3c-image-capture": "^1.0.10",
-    "jimp": "^1.6.0",
+    "mecab-wasm": "^1.0.3",
     "tailwindcss": "^4.0.9",
     "tesseract.js": "^6.0.0"
   }

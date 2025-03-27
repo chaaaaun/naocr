@@ -151,7 +151,6 @@ export async function takePhoto() {
     await new Promise(resolve => setTimeout(resolve, 20));
 
     await grabFrame(element);
-    console.log(`Image capture took: ${Math.round(performance.now() - start)}ms`);
 }
 
 async function grabFrame(videoElement: HTMLVideoElement) {
