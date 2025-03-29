@@ -1,17 +1,21 @@
-<script>
-  import Mecab from "mecab-wasm";
-
+<script lang="ts">
   import Camera from "./lib/components/Camera.svelte";
   import Results from "./lib/components/Results.svelte";
   import { initWorker } from "./lib/utils/ocr";
   import { sharedState } from "./state.svelte";
+  import { getMecab } from "./lib/utils/mecab";
+
+  async function loadMecab() {
+    const m = await getMecab();
+    await m.waitReady();
+  }
 </script>
 
 <main>
   {#await initWorker()}
     <p class="p-4">Loading OCR Engine...</p>
   {:then}
-    {#await Mecab.waitReady()}
+    {#await loadMecab()}
       <p class="p-4">Loading tokenizer...</p>
     {:then}
       {#if sharedState.imageDataUrl}

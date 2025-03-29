@@ -15,10 +15,6 @@
     "checkJs": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "typeRoots": [
-      "./node_modules/@types", // Default location for @types packages
-      "./types"               // Add your custom types folder
-    ],
   },
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte", "./types/**/*.d.ts"]
 }

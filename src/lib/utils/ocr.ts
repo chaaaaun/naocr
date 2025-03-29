@@ -1,6 +1,7 @@
 import Tesseract, { createWorker, PSM } from "tesseract.js";
 import { Orientation } from "../../state.svelte";
-import Mecab from "mecab-wasm";
+import { get } from "svelte/store";
+import { getMecab, type Mecab } from "./mecab";
 
 let horzWorker: Tesseract.Worker | null = null;
 let vertWorker: Tesseract.Worker | null = null;
@@ -63,17 +64,19 @@ export async function recognizeText(
     );
     console.log(result);
 
+    const mecab = await getMecab();
+
     // Extract the recognized text
     return result.data.blocks
         ? result.data.blocks
             .flatMap((block) => block.paragraphs)
             .flatMap((paragraph) => paragraph.lines)
             .flatMap((line) =>
-                segmentWords(line.words.map((word) => word.text).join("")),
+                segmentWords(line.words.map((word) => word.text).join(""), mecab),
             )
         : [];
 }
 
-function segmentWords(line: string) {
-    return Mecab.query(line).map(r => r.word);
+function segmentWords(line: string, mecab: Mecab) {
+    return mecab.query(line).map(r => r.word);
 }
